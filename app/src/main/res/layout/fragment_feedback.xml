@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:id="@+id/lnlayoutImageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="60"
+        android:orientation="vertical"
+        android:padding="10dp" android:visibility="visible">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:gravity="center"
+            android:padding="10dp" android:visibility="gone"
+            android:background="@color/cardview_light_background"
+            />
+        <ImageView
+            android:id="@+id/image_lorem"
+            android:layout_width="260dp"
+            android:layout_height="260dp"
+            android:src="@drawable/no_image_icon"
+            android:layout_gravity="center"
+
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="(* Chọn hoặc chụp ít nhất 4 hình về vật thể)"
+            android:gravity="center"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:id="@+id/layout_video_tutorial">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/youtube_icon"
+                android:layout_gravity="center"
+
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Video hướng dẫn chụp hình"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:textColor="#0061ff"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="40"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/imgButtonChooseImage"
+                    android:src="@drawable/photos"
+                    android:scaleType="fitCenter"
+                    />
+
+                <ImageButton android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/imgButtonCamera"
+                    android:src="@drawable/camera"
+                    android:scaleType="fitCenter"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mô tả chi tiết:"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                />
+
+            <EditText
+
+                android:id="@+id/edtFeedbackDescription"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:hint="Nhận xét của bạn"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
