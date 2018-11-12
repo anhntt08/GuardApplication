@@ -1,32 +1,38 @@
 package model;
 
 
+import android.graphics.Camera;
+
+import java.util.Date;
+
+
 public class Notification {
-    private String title;
+    private int id;
     private String imageURL = "";
-    private String camraID;
-    private String dateTime;
+    private CameraDTO camera_id;
+    private Date dateTime;
+    /* status:
+    --- 0: not read
+    --- 1: reject
+    --- 2: done
+    */
+    private int status;
+    private int userID;
 
     public Notification() {
     }
 
-    public Notification(String title, String imageURL){
-        this.title = title;
-        this.imageURL = imageURL;
-    }
-    public Notification(String title, String imageURL, String camraID, String dateTime) {
-        this.title = title;
-        this.imageURL = imageURL;
-        this.camraID = camraID;
+    public Notification(CameraDTO cameraDTO, Date dateTime){
+        this.camera_id = cameraDTO;
         this.dateTime = dateTime;
     }
 
-    public String getTitle() {
-        return title;
+    public int getId() {
+        return id;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getImageURL() {
@@ -37,19 +43,35 @@ public class Notification {
         this.imageURL = imageURL;
     }
 
-    public String getCamraID() {
-        return camraID;
+    public CameraDTO getCamera_id() {
+        return camera_id;
     }
 
-    public void setCamraID(String camraID) {
-        this.camraID = camraID;
+    public void setCamera_id(CameraDTO camera_id) {
+        this.camera_id = camera_id;
     }
 
-    public String getDateTime() {
+    public Date getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(String dateTime) {
+    public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 }

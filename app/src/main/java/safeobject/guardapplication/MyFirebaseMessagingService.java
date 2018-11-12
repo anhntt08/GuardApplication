@@ -19,16 +19,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         if (remoteMessage.getData().size() > 0) {
 
-//            Notification notification = new Notification();
-//
-//            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
-//            String currentDateandTime = sdf.format(Calendar.getInstance().getTime());
-//
-//            notification.setDateTime(currentDateandTime);
-//            notification.setCamraID("Cầu thang lầu 1");
-//            notification.setTitle(remoteMessage.getNotification().getTitle());
-//            notification.setImageURL(remoteMessage.getData().get("images"));
-
             notify(remoteMessage);
         }
     }

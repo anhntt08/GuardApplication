@@ -39,10 +39,10 @@ public class Notification_Detail extends AppCompatActivity  {
 
         Notification notification = new Notification();
 
-        notification.setDateTime(bundle.getString("NotiDate"));
-        notification.setTitle("SafeObject");
-        notification.setCamraID(bundle.getString("NotiCamera"));
-        notification.setImageURL(bundle.getString("NotiImage"));
+//        notification.setDateTime(bundle.getString("NotiDate"));
+//        notification.setTitle("SafeObject");
+//        notification.setCamraID(bundle.getString("NotiCamera"));
+//        notification.setImageURL(bundle.getString("NotiImage"));
 
         imageView = findViewById(R.id.ImageView_NotificationDetail);
         textView = findViewById(R.id.textView_NotificationDetail);
