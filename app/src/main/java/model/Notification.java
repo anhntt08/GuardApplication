@@ -8,8 +8,7 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class Notification implements Serializable {
     private int id;
-    private String imageURL = "";
-    private CameraDTO camera_id;
+    private String imageURL;
     private Date dateTime;
     /* status:
     --- 0: not read
@@ -17,23 +16,24 @@ public class Notification implements Serializable {
     --- 2: done
     */
     private int status;
-    private int userID;
+    private CameraDTO camera;
+    private UserDTO user;
 
     public Notification() {
     }
 
     public Notification(CameraDTO cameraDTO, Date dateTime){
-        this.camera_id = cameraDTO;
+        this.camera = cameraDTO;
         this.dateTime = dateTime;
     }
 
-    public Notification(int id, String imageURL, CameraDTO camera_id, Date dateTime, int status, int userID) {
+    public Notification(int id, String imageURL, CameraDTO camera_id, Date dateTime, int status, UserDTO userID) {
         this.id = id;
         this.imageURL = imageURL;
-        this.camera_id = camera_id;
+        this.camera = camera_id;
         this.dateTime = dateTime;
         this.status = status;
-        this.userID = userID;
+        this.user = userID;
     }
 
     public int getId() {
@@ -52,13 +52,6 @@ public class Notification implements Serializable {
         this.imageURL = imageURL;
     }
 
-    public CameraDTO getCamera_id() {
-        return camera_id;
-    }
-
-    public void setCamera_id(CameraDTO camera_id) {
-        this.camera_id = camera_id;
-    }
 
     public Date getDateTime() {
         return dateTime;
@@ -76,11 +69,19 @@ public class Notification implements Serializable {
         this.status = status;
     }
 
-    public int getUserID() {
-        return userID;
+    public CameraDTO getCamera() {
+        return camera;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setCamera(CameraDTO camera) {
+        this.camera = camera;
+    }
+
+    public UserDTO getUser() {
+        return user;
+    }
+
+    public void setUser(UserDTO user) {
+        this.user = user;
     }
 }

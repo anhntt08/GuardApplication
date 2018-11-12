@@ -34,7 +34,7 @@ public class NotificationItemApdater extends RecyclerView.Adapter<NotificationIt
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Notification noti = arrayNoti.get(i);
-        viewHolder.txtCameraLocation.setText(noti.getCamera_id().getCameraLocation());
+//        viewHolder.txtCameraLocation.setText(noti.getCamera_id().getCameraLocation());
 
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         String currentDateandTime = sdf.format(noti.getDateTime());
