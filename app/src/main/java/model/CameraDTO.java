@@ -1,6 +1,8 @@
 package model;
 
-public class CameraDTO {
+import java.io.Serializable;
+
+public class CameraDTO implements Serializable {
     private int cameraID;
     private String cameraLocation;
 

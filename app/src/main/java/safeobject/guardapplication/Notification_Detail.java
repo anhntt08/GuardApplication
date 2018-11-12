@@ -1,5 +1,6 @@
 package safeobject.guardapplication;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -35,19 +36,15 @@ public class Notification_Detail extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification__detail);
 
-        Bundle bundle = getIntent().getExtras();
 
-        Notification notification = new Notification();
 
-//        notification.setDateTime(bundle.getString("NotiDate"));
-//        notification.setTitle("SafeObject");
-//        notification.setCamraID(bundle.getString("NotiCamera"));
-//        notification.setImageURL(bundle.getString("NotiImage"));
+        Notification notification = (Notification) getIntent().getSerializableExtra("Notification_detail");
+        Log.d("AnhNTT",notification.toString());
 
         imageView = findViewById(R.id.ImageView_NotificationDetail);
         textView = findViewById(R.id.textView_NotificationDetail);
         Log.d("AnhNTT onCreate: ",notification.getImageURL());
-        getDownloadURLImage("images/"+notification.getImageURL());
+//        getDownloadURLImage("images/"+notification.getImageURL());
     }
 
 //    public Bitmap StringToBitMap(String encodedString){

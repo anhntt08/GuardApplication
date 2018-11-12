@@ -1,12 +1,12 @@
 package model;
 
 
-import android.graphics.Camera;
 
+import java.io.Serializable;
 import java.util.Date;
 
-
-public class Notification {
+@SuppressWarnings("serial")
+public class Notification implements Serializable {
     private int id;
     private String imageURL = "";
     private CameraDTO camera_id;
@@ -25,6 +25,15 @@ public class Notification {
     public Notification(CameraDTO cameraDTO, Date dateTime){
         this.camera_id = cameraDTO;
         this.dateTime = dateTime;
+    }
+
+    public Notification(int id, String imageURL, CameraDTO camera_id, Date dateTime, int status, int userID) {
+        this.id = id;
+        this.imageURL = imageURL;
+        this.camera_id = camera_id;
+        this.dateTime = dateTime;
+        this.status = status;
+        this.userID = userID;
     }
 
     public int getId() {

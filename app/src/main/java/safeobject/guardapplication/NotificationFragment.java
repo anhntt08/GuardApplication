@@ -1,5 +1,6 @@
 package safeobject.guardapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -31,15 +32,18 @@ public class NotificationFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.notiList_recyclerView);
 
-        List<Notification> listNoti = new ArrayList<>();
+        final List<Notification> listNoti = new ArrayList<>();
 
         Date currentTime = Calendar.getInstance().getTime();
 
 
         CameraDTO cameraDTO = new CameraDTO(1,"Camera lầu 1");
-        listNoti.add(new Notification(cameraDTO,currentTime));
-        listNoti.add(new Notification(cameraDTO,currentTime));
-        listNoti.add(new Notification(cameraDTO,currentTime));
+
+        listNoti.add(new Notification(1,"1.png",cameraDTO,currentTime,1,1));
+        listNoti.add(new Notification(2,"2.png",cameraDTO,currentTime,1,1));
+        listNoti.add(new Notification(3,"3.png",cameraDTO,currentTime,1,1));
+        listNoti.add(new Notification(4,"4.png",cameraDTO,currentTime,1,1));
+        listNoti.add(new Notification(5,"5.png",cameraDTO,currentTime,1,1));
         NotificationItemApdater notificationItemApdater = new NotificationItemApdater(listNoti);
         recyclerView.setAdapter(notificationItemApdater);
 
@@ -51,7 +55,10 @@ public class NotificationFragment extends Fragment {
                 new RecyclerTouchListener() {
                     @Override
                     public void onClickItem(View view, int position) {
-                        Log.d("AnhNTT", "On click item ");
+                        Intent intent = new Intent(getContext(), Notification_Detail.class);
+                        intent.putExtra("Notification_detail",listNoti.get(position));
+                        startActivity(intent);
+
                     }
 
                     @Override
