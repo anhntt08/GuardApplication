@@ -12,10 +12,7 @@
         android:id="@+id/toolbar_layout"
         layout="@layout/app_bar_home"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
-
-
+        android:layout_height="match_parent" />
 
         <android.support.design.widget.NavigationView
             android:id="@+id/nav_view"
@@ -25,7 +22,6 @@
             app:headerLayout="@layout/nav_header_home"
             app:menu="@menu/activity_home_drawer"
             android:layout_marginTop="@dimen/abc_action_bar_default_height_material"
-
             />
 
 
