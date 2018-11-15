@@ -9,7 +9,7 @@ import java.util.Date;
 public class Notification implements Serializable {
     private int id;
     private String imageURL;
-    private Date dateTime;
+    private Long dateTime;
     /* status:
     --- 0: not read
     --- 1: reject
@@ -22,18 +22,26 @@ public class Notification implements Serializable {
     public Notification() {
     }
 
-    public Notification(CameraDTO cameraDTO, Date dateTime){
+    public Notification(CameraDTO cameraDTO, Long dateTime){
         this.camera = cameraDTO;
         this.dateTime = dateTime;
     }
 
-    public Notification(int id, String imageURL, CameraDTO camera_id, Date dateTime, int status, UserDTO userID) {
+    public Notification(int id, String imageURL, CameraDTO camera_id, Long dateTime, int status, UserDTO userID) {
         this.id = id;
         this.imageURL = imageURL;
         this.camera = camera_id;
         this.dateTime = dateTime;
         this.status = status;
         this.user = userID;
+    }
+
+    public Notification(int id, String imageURL, Long dateTime, int status, CameraDTO camera) {
+        this.id = id;
+        this.imageURL = imageURL;
+        this.dateTime = dateTime;
+        this.status = status;
+        this.camera = camera;
     }
 
     public int getId() {
@@ -53,11 +61,11 @@ public class Notification implements Serializable {
     }
 
 
-    public Date getDateTime() {
+    public Long getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(Date dateTime) {
+    public void setDateTime(Long dateTime) {
         this.dateTime = dateTime;
     }
 

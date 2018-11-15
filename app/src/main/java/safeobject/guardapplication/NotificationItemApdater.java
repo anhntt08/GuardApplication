@@ -1,13 +1,10 @@
 package safeobject.guardapplication;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -34,7 +31,6 @@ public class NotificationItemApdater extends RecyclerView.Adapter<NotificationIt
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Notification noti = arrayNoti.get(i);
-//        viewHolder.txtCameraLocation.setText(noti.getCamera_id().getCameraLocation());
 
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         String currentDateandTime = sdf.format(noti.getDateTime());

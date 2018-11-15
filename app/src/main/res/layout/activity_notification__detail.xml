@@ -1,34 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Notification_Detail"
-    android:orientation="vertical">
+    android:fillViewport="true"
+ >
 
-    <TextView
-        android:id="@+id/textView_NotificationDetail"
-        android:text="Cầu thang lầu 1 có vật nguy hiểm"
-        android:textSize="20dp"
-        android:layout_marginLeft="10dp"
-        android:paddingBottom="10dp"
-        android:paddingTop="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    <ScrollView
-        android:id="@+id/ScrollViewID"
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/ImageView_NotificationDetail"
+        <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"/>
+
+            <TextView
+                android:id="@+id/notiDetail_txtTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:layout_weight="1"
+                android:text="07:00"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/notiDetail_txtLocation"
+            android:text="Cầu thang lầu 1"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="5dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
 
-    </ScrollView>
 
+    <ImageView
+        android:id="@+id/ImageView_NotificationDetail"
+        android:layout_width="450dp"
+        android:layout_height="600dp"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        />
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        >
+
+        <Button
+            android:id="@+id/notiDetail_btnDeny"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Deny"
+            android:background="@drawable/button_shape_deny"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            />
+
+        <Button
+            android:id="@+id/notiDetail_btnApprove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Approve"
+            android:background="@drawable/button_shape_approve"
+            android:layout_marginRight="5dp"/>
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
