@@ -1,11 +1,16 @@
 package safeobject.guardapplication;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -16,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,6 +31,8 @@ public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private Boolean showFeedback = false;
     private Fragment fragment_content = null;
+
+    private Dialog dialog;
 
 
     @Override
@@ -46,6 +54,7 @@ public class HomeActivity extends AppCompatActivity
                     }
                 });
 
+        dialog = new Dialog(this);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -55,6 +64,17 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View headerview = navigationView.getHeaderView(0);
+        headerview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               PopupResetPassword popupResetPassword = new PopupResetPassword(v.getContext());
+            }
+        });
+
+        fragment_content = new NotificationFragment();
+        showFeedback = false;
+        switchFragment();
     }
 
     @Override
@@ -70,8 +90,11 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home, menu);
-        menu.findItem(R.id.action_bar_sendFeedback).setVisible(showFeedback);
+        if(showFeedback){
+            getMenuInflater().inflate(R.menu.home, menu);
+            menu.findItem(R.id.action_bar_sendFeedback).setVisible(showFeedback);
+        }
+
         return true;
     }
 
@@ -100,6 +123,15 @@ public class HomeActivity extends AppCompatActivity
             showFeedback = true;
         }
 
+
+        switchFragment();
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    private void switchFragment(){
         invalidateOptionsMenu();
         if (fragment_content != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -107,9 +139,5 @@ public class HomeActivity extends AppCompatActivity
             ft.addToBackStack(null);
             ft.commit();
         }
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 }

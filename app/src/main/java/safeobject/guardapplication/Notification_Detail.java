@@ -1,10 +1,7 @@
 package safeobject.guardapplication;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
@@ -12,7 +9,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
 import android.net.Uri;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -32,7 +29,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
@@ -40,15 +36,14 @@ import model.Notification;
 
 public class Notification_Detail extends AppCompatActivity {
     ImageView imageView;
-    TextView txtLocation, txtTime;
     Button btnApprove, btnReject;
     Camera camera;
 
     private final int CAMERA_PIC_REQUEST = 8;
-    private final int MY_CAMERA_PERMISSION_CODE = 0;
-    private File output = null;
     private Uri imageUri;
     private String imageurl;
+    private ProgressBar progressBar;
+    private Notification noti;
 
 
     @Override
@@ -57,24 +52,25 @@ public class Notification_Detail extends AppCompatActivity {
         setContentView(R.layout.activity_notification__detail);
 
 
-        final Notification notification = (Notification) getIntent().getSerializableExtra("Notification_detail");
-        Log.d("AnhNTT", notification.toString());
+        noti = (Notification) getIntent().getSerializableExtra("Notification_detail");
 
         imageView = findViewById(R.id.ImageView_NotificationDetail);
-        txtLocation = findViewById(R.id.notiDetail_txtLocation);
-        txtTime = findViewById(R.id.notiDetail_txtTime);
+        progressBar = findViewById(R.id.notiDetail_progressBar);
+
         btnApprove = findViewById(R.id.notiDetail_btnApprove);
         btnReject = findViewById(R.id.notiDetail_btnDeny);
         btnReject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                notification.setStatus(1);// set reject
+                noti.setStatus(1);// set reject
+                Intent intent = new Intent(v.getContext(), HomeActivity.class);
+                startActivity(intent);
             }
         });
         btnApprove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                notification.setStatus(2);//set done
+                noti.setStatus(2);//set done
                 ContentValues values = new ContentValues();
                 values.put(MediaStore.Images.Media.TITLE, "New Picture");
                 values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera");
@@ -83,16 +79,16 @@ public class Notification_Detail extends AppCompatActivity {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                 startActivityForResult(intent, CAMERA_PIC_REQUEST);
-
             }
         });
 
-        txtLocation.setText(notification.getCamera().getCameraLocation());
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        String currentDateandTime = sdf.format(notification.getDateTime());
-        txtTime.setText(currentDateandTime);
+        getSupportActionBar().setTitle(noti.getCamera().getCameraLocation());
 
-        getDownloadURLImage("images/" + notification.getImageURL());
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+//        String currentDateandTime = sdf.format(notification.getDateTime());
+//        txtTime.setText(currentDateandTime);
+
+        getDownloadURLImage("images/" + noti.getImageURL());
 
     }
 
@@ -117,7 +113,6 @@ public class Notification_Detail extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
                 exception.printStackTrace();
             }
         });
@@ -131,6 +126,7 @@ public class Notification_Detail extends AppCompatActivity {
                 .into(new SimpleTarget<Bitmap>() {
                     @Override
                     public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
+                        progressBar.setVisibility(View.GONE);
                         imageView.setImageBitmap(resource);
                     }
                 });
@@ -141,13 +137,13 @@ public class Notification_Detail extends AppCompatActivity {
         if (requestCode == CAMERA_PIC_REQUEST) {
             Bitmap thumbnail = null;
             try {
-//                thumbnail = MediaStore.Images.Media.getBitmap(
-//                                    getContentResolver(), imageUri);
                 thumbnail = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
                 thumbnail = RotateBitmap(thumbnail, 90);
                 Drawable d = new BitmapDrawable(getResources(), thumbnail);
                 imageView.setImageDrawable(d);
-                imageurl = getRealPathFromURI(imageUri);
+//                imageurl = getRealPathFromURI(imageUri);
+//                Log.d("AnhNTT, imageurl: ", imageurl);
+                noti.setImageURL(getRealPathFromURI(imageUri));
             } catch (IOException e) {
                 e.printStackTrace();
             }

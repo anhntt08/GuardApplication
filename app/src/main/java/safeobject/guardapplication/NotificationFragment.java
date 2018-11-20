@@ -11,9 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -23,10 +23,7 @@ import app_interface.SendNotificationAPI;
 import model.CameraDTO;
 import model.Notification;
 import model.NotificationDTO;
-import model.NotificationList;
-import model.UserDTO;
 import network.RetrofitClientInstance;
-import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,6 +33,7 @@ public class NotificationFragment extends Fragment {
     RecyclerView recyclerView;
     final int status_not_read = 0;
     View view;
+    ImageView imageView;
 
     @Nullable
     @Override
@@ -132,15 +130,22 @@ public class NotificationFragment extends Fragment {
 
                     }
                 }));
+
+
     }
 
-    private List<Notification> createListNoti(){
+    private List<Notification> createListNoti() {
         List<Notification> listNoti = new ArrayList<>();
-        CameraDTO cameraDTO = new CameraDTO(1, "Camera lau 1");
+        CameraDTO cameraDTO = new CameraDTO(1, "Cầu thang lầu 1");
         listNoti.add(new Notification(1, "073a1e44-4eae-4c61-8210-9328cd53a14f.jpg",
                 Calendar.getInstance().getTimeInMillis(), 0, cameraDTO));
+
+        cameraDTO = new CameraDTO(1, "Cầu thang lầu 2");
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2018, 10, 17);
         listNoti.add(new Notification(1, "024f8cbb-5065-44f1-85c5-cef7d5f5d8ac.jpg",
-                Calendar.getInstance().getTimeInMillis(), 0, cameraDTO));
+                calendar.getTimeInMillis(), 1, cameraDTO));
         listNoti.add(new Notification(1, "071619b1-3f51-4b94-9fc2-0212d16c5196.jpg",
                 Calendar.getInstance().getTimeInMillis(), 0, cameraDTO));
         return listNoti;

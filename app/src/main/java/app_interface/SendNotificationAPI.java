@@ -21,4 +21,8 @@ public interface SendNotificationAPI {
     @GET("getAllListNotification")
     @Headers("Content-Type: application/json")
     Call<List<Notification>> getListNotificationByStatus();
+
+    @POST("updateNotification")
+    @Headers("Content-Type: application/json")
+    Call<Boolean> updateNotification(@Body Notification notification);
 }

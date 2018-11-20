@@ -22,6 +22,8 @@
             app:headerLayout="@layout/nav_header_home"
             app:menu="@menu/activity_home_drawer"
             android:layout_marginTop="@dimen/abc_action_bar_default_height_material"
+            app:itemTextColor="@color/colorPrimaryDark"
+            app:itemIconTint="@color/colorPrimaryDark"
             />
 
 
