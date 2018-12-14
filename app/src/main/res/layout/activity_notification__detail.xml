@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Notification_Detail"
-    android:orientation="vertical">
+    tools:context=".Activity.NotificationDetailActivity"
+    android:orientation="vertical"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -33,38 +34,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="0"
             android:gravity="bottom"
             android:background="@color/colorPrimaryDark"
             >
-
-            <Button
-                android:id="@+id/notiDetail_btnDeny"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="16dp"
-                android:text="Reject"
-                android:fontFamily="@font/amiko_semibold"
-                android:textColor="@color/red"
-                android:textSize="24sp"
-                android:drawableLeft="@drawable/ic_close_black_24dp"
-                android:background="@drawable/button_shape_deny"
-                />
 
             <Button
                 android:id="@+id/notiDetail_btnApprove"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/button_shape_approve"
+                android:background="@color/colorPrimaryDark"
                 android:padding="16dp"
-                android:text="Done"
+                android:text="@string/done"
                 android:drawableLeft="@drawable/ic_check_24dp"
                 android:fontFamily="@font/amiko_semibold"
                 android:textColor="@color/green"
                 android:textSize="24sp"
                />
+
         </LinearLayout>
 
 </LinearLayout>

@@ -24,7 +24,9 @@
             android:layout_marginTop="@dimen/abc_action_bar_default_height_material"
             app:itemTextColor="@color/colorPrimaryDark"
             app:itemIconTint="@color/colorPrimaryDark"
-            />
+            >
+
+        </android.support.design.widget.NavigationView>
 
 
 </android.support.v4.widget.DrawerLayout>

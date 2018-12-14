@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="safeobject.guardapplication">
+    package="safeobject.view">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -17,29 +17,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service android:name=".MyFirebaseInstanceIdService">
+        <service android:name="safeobject.service.MyFirebaseInstanceIdService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-        <service android:name=".MyFirebaseMessagingService">
+        <service android:name="safeobject.service.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
         <activity
-            android:name=".Notification_Detail"
-            android:parentActivityName=".HomeActivity">
+            android:name="safeobject.view.Activity.NotificationDetailActivity"
+            android:parentActivityName="safeobject.view.Activity.HomeActivity">
             <intent-filter>
                 <action android:name="OPEN_ACTIVITY_1" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".CameraFeedbackActivity" />
+        <activity android:name="safeobject.view.Activity.CameraFeedbackActivity" />
         <activity
-            android:name=".HomeActivity"
+            android:name="safeobject.view.Activity.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan">
@@ -52,11 +52,15 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".LoginActivity">
+        <activity android:name="safeobject.view.Activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name="safeobject.view.Activity.NotificationFeedbackActivity"
+            android:parentActivityName="safeobject.view.Activity.NotificationDetailActivity">
         </activity>
     </application>
 
